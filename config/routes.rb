@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'adresses/index'
+    get 'adresses/edit'
+  end
+  namespace :public do
+    get 'orders/new'
+    get 'orders/index'
+    get 'orders/show'
+  end
+  namespace :public do
+    get 'cart_items/index'
+  end
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+  end
   namespace :admin do
     get 'orders/show'
     get 'orders/index'
