@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :customers
   namespace :public do
     get 'homes/top'
     get 'homes/about'
