@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root to: 'public/homes#top'
+  get '/admin' => 'admin/homes#top', as: 'admin_top'
   get 'home/about' => 'public/homes#about', as: 'about'
   
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -16,24 +17,34 @@ Rails.application.routes.draw do
     resources :confirmations, only: [:new]
     resources :customers, only: [:index, :show, :edit]
     resources :genres, only: [:index, :edit]
-    resources :homes, only: [:top]
+    # resources :homes, only: [:top]
     resources :items, only: [:index, :new, :show, :edit]
     resources :orders, only: [:show, :index]
-    resources :sessions, only: [:new]
+    # resources :sessions, only: [:new]
     resources :unlocks, only: [:new]
   end
   
   namespace :public do
-    resources :adresses, only: [:index, :edit]
-    resources :cart_items, only: [:index]
     resources :confirmations, only: [:new]
-    resources :customers, only: [:show, :edit]
-    resources :homes, only: [:about, :top]
-    resources :items, only: [:index, :show]
-    resources :orders, only: [:new, :index, :show]
-    resources :registrations, only: [:edit, :new]
-    resources :sessions, only: [:new]
     resources :unlocks, only: [:new]
   end
+  
+    resources :adresses, only: [:index, :edit]
+    resources :cart_items, only: [:index]
+    resources :customers, only: [:show, :edit]
+    resources :items, only: [:index, :show]
+    resources :orders, only: [:new, :index, :show]
+    # resources :registrations, only: [:edit, :new]
+    # resources :sessions, only: [:new]
+    
+    # get 'items' => 'public/adresses#index'
+    # get 'cart_items' => 'public/cart_items#index'
+    # get 'customers/:id' => 'public/customers#show'
+    # get 'customers/:id/edit' => 'public/customers#edit'
+    # get 'items' => 'public/items#index'
+    # get 'items/:id' => 'public/items#show'
+    # get 'orders/new' => 'public/orders#new'
+    # get 'orders' => 'public/orders#index'
+    # get 'orders/:id' => 'public/orders#show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
