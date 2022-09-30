@@ -17,17 +17,15 @@ Rails.application.routes.draw do
     resources :confirmations, only: [:new]
     resources :customers, only: [:index, :show, :edit]
     resources :genres, only: [:index, :edit]
-    # resources :homes, only: [:top]
     resources :items, only: [:index, :new, :show, :edit]
     resources :orders, only: [:show, :index]
-    # resources :sessions, only: [:new]
     resources :unlocks, only: [:new]
   end
   
-  namespace :public do
-    resources :confirmations, only: [:new]
-    resources :unlocks, only: [:new]
-  end
+  # namespace :public do
+  #   resources :confirmations, only: [:new]
+  #   resources :unlocks, only: [:new]
+  # end
   
     resources :adresses, only: [:index, :edit]
     resources :cart_items, only: [:index]
