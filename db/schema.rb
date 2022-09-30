@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_29_065110) do
+ActiveRecord::Schema.define(version: 2022_09_30_150917) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -101,6 +101,29 @@ ActiveRecord::Schema.define(version: 2022_09_29_065110) do
     t.text "introduction", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.integer "price_on_purchase", null: false
+    t.integer "amount", null: false
+    t.integer "production_status", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "delivery_postal_code", null: false
+    t.string "delivery_adress", null: false
+    t.string "delivery_name", null: false
+    t.integer "shipping_fee", null: false
+    t.integer "total_price", null: false
+    t.integer "payment_method", null: false
+    t.integer "order_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
