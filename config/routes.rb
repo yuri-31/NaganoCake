@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :confirmations, only: [:new]
     resources :customers, only: [:index, :show, :edit]
-    resources :genres, only: [:index, :create, :edit]
+    resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :show, :edit]
     resources :orders, only: [:show, :index]
     resources :unlocks, only: [:new]
