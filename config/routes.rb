@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :confirmations, only: [:new]
     resources :customers, only: [:index, :show, :edit]
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :items, only: [:index, :new, :create, :show, :edit]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :orders, only: [:show, :index]
     resources :unlocks, only: [:new]
   end

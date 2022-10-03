@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
   def index
+    @genre = Genre.new
     @genres = Genre.all
     @genres = Genre.all.order(created_at: :desc)
   end
@@ -23,7 +24,7 @@ class Admin::GenresController < ApplicationController
   
   private
   def genre_params
-    params.permit(:name)
+    params.require(:genre).permit(:name)
   end
   
 end
