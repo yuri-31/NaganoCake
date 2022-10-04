@@ -11,8 +11,8 @@ class Item < ApplicationRecord
     # validates :is_active, presence: true
     
     # FAILED WHEN PUDDING.JPEG WAS PROCESSED
-    def get_item_image
-        item_image.variant(resize_to_limit: [200, 200]).processed
+    def get_item_image(width, height)
+        item_image.variant(resize_to_limit: [width, height]).processed
     end
     
     # NOT SURE
