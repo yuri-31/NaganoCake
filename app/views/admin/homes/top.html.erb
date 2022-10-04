@@ -8,9 +8,11 @@
             <th>注文個数</th>
             <th>注文ステータス</th>
         </tr>
+    </thead>
+    <tbody>
         <% @orders.each do |order| %>
         <tr>
-            <td><%= order.created_at %></td>
+            <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
             <td><%= order.customer.full_name %></td>
             <!--合計注文個数-->
             <td>30</td>
@@ -18,7 +20,7 @@
             <td>入金待ち</td>
         </tr>
         <% end %>
-    </thead>
+    </tbody>
 </table>
 
 <%= paginate @orders %>
