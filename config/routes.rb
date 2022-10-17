@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   # end
   
   
-    resources :adresses, only: [:index, :edit]
+    # resources :adresses, only: [:create, :index, :edit, :destroy]
+    get '/adresses' => 'public/adresses#index', as: 'adresses'
+    get '/adresses/:id/edit' => 'public/adresses#edit', as: 'edit_adress'
+    post '/adresses' => 'public/adresses#create', as: 'new_adress'
+    patch '/adresses/:id' => 'public/adresses#update', as: 'update_adress'
+    delete '/adresses/:id' => 'public/adresses#destroy', as: 'destroy_adress'
     
     get '/cart_items' => 'public/cart_items#index', as: 'cart_items'
     
