@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :adresses, only: [:index, :edit]
     get '/cart_items' => 'public/cart_items#index', as: 'cart_items'
     get '/customers/information/edit' => 'public/customers#edit', as: 'edit_customer'
+    patch '/customers/information' => 'public/customers#update', as: 'update_customer'
     get '/customers/my_page' => 'public/customers#show', as: 'my_page'
     resources :items, only: [:show]
     get '/items' => 'public/items#index', as: 'items'
