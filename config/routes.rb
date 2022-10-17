@@ -27,10 +27,13 @@ Rails.application.routes.draw do
   #   resources :unlocks, only: [:new]
   # end
   
+  
     resources :adresses, only: [:index, :edit]
-    resources :cart_items, only: [:index]
-    resources :customers, only: [:show, :edit]
-    resources :items, only: [:index, :show]
+    get '/cart_items' => 'public/cart_items#index', as: 'cart_items'
+    get '/customers/information/edit' => 'public/customers#edit', as: 'edit_customer'
+    get '/customers/my_page' => 'public/customers#show', as: 'my_page'
+    resources :items, only: [:show]
+    get '/items' => 'public/items#index', as: 'items'
     resources :orders, only: [:new, :index, :show]
     # resources :registrations, only: [:edit, :new]
     # resources :sessions, only: [:new]

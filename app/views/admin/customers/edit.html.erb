@@ -5,10 +5,10 @@
         <tbody>
             <tr>
                 <th>会員ID</th>
-                <td><%= :id %></td>
+                <td><%= @customer.id %></td>
             </tr>
             <tr>
-                <th>氏名<th>
+                <th>氏名</th>
                 <td><%= f.text_field :last_name %></td>
                 <td><%= f.text_field :first_name %></td>
             </tr>
@@ -38,8 +38,6 @@
                 <td>
                     <%= f.radio_button :is_deleted, false %>
                     <%= f.label :is_deleted, "有効" %>
-                </td>
-                <td>
                     <%= f.radio_button :is_deleted, true %>
                     <%= f.label :is_deleted, "退会" %><br>
                 </td>
@@ -50,4 +48,4 @@
             </tr>
         </tbody>
     </table>
-<%= end %>
+<% end %>

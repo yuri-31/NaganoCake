@@ -17,6 +17,6 @@ class Customer < ApplicationRecord
   # validates :is_deleted, presence: true
          
   def full_name
-    customer.last_name + customer.first_name
+     last_name + first_name
   end
 end
