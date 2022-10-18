@@ -17,6 +17,12 @@ class Public::AdressesController < ApplicationController
     @adress = Adress.find(params[:id])
   end
   
+  def update
+    @adress = Adress.find(params[:id])
+    @adress.update(adress_params)
+    redirect_to adresses_path
+  end
+  
   def destroy
     @adress = Adress.find(params[:id])
     @adress.destroy
