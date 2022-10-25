@@ -36,6 +36,10 @@ Rails.application.routes.draw do
     delete '/adresses/:id' => 'public/adresses#destroy', as: 'destroy_adress'
     
     get '/cart_items' => 'public/cart_items#index', as: 'cart_items'
+    post '/cart_items' => 'public/cart_items#create', as: 'new_cart_item'
+    patch '/cart_items/:id' => 'public/cart_items#update', as: 'update_cart_item'
+    delete '/cart_items/:id' => 'public/cart_items#destroy', as: 'delete_cart_item'
+    get '/cart_items/destroy_all' => 'public/cart_items#destroy_all', as: 'destroy_all'
     
     get '/customers/my_page' => 'public/customers#show', as: 'my_page'
     get '/customers/information/edit' => 'public/customers#edit', as: 'edit_customer'
@@ -43,10 +47,12 @@ Rails.application.routes.draw do
     get '/customers/unsbscribe' => 'public/customers#unsbscribe', as: 'unsbscribe'
     patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
     
-    resources :items, only: [:show]
+    # resources :items, only: [:show]
+    get '/items/:id' => 'public/items#show', as: 'item'
     get '/items' => 'public/items#index', as: 'items'
     
-    resources :orders, only: [:new, :index, :show]
+    resources :orders, only: [:index, :show]
+    get '/orders/new' => 'public/orders#new', as: 'order_info'
     # resources :registrations, only: [:edit, :new]
     # resources :sessions, only: [:new]
     
