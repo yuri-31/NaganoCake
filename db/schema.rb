@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_30_150917) do
+ActiveRecord::Schema.define(version: 2022_10_31_125638) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2022_09_30_150917) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,15 +59,6 @@ ActiveRecord::Schema.define(version: 2022_09_30_150917) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "adresses", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.string "name", null: false
-    t.string "postal_code", null: false
-    t.string "adress", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_150917) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "postal_code", null: false
-    t.string "adress", null: false
+    t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_150917) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "delivery_postal_code", null: false
-    t.string "delivery_adress", null: false
+    t.string "delivery_address", null: false
     t.string "delivery_name", null: false
     t.integer "shipping_fee", null: false
     t.integer "total_price", null: false

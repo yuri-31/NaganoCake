@@ -29,11 +29,11 @@ Rails.application.routes.draw do
   
   
     # resources :adresses, only: [:create, :index, :edit, :destroy]
-    get '/adresses' => 'public/adresses#index', as: 'adresses'
-    get '/adresses/:id/edit' => 'public/adresses#edit', as: 'edit_adress'
-    post '/adresses' => 'public/adresses#create', as: 'new_adress'
-    patch '/adresses/:id' => 'public/adresses#update', as: 'update_adress'
-    delete '/adresses/:id' => 'public/adresses#destroy', as: 'destroy_adress'
+    get '/addresses' => 'public/addresses#index', as: 'addresses'
+    get '/addresses/:id/edit' => 'public/addresses#edit', as: 'edit_address'
+    post '/addresses' => 'public/addresses#create', as: 'new_address'
+    patch '/addresses/:id' => 'public/addresses#update', as: 'update_address'
+    delete '/addresses/:id' => 'public/addresses#destroy', as: 'destroy_address'
     
     get '/cart_items' => 'public/cart_items#index', as: 'cart_items'
     post '/cart_items' => 'public/cart_items#create', as: 'new_cart_item'
@@ -51,8 +51,11 @@ Rails.application.routes.draw do
     get '/items/:id' => 'public/items#show', as: 'item'
     get '/items' => 'public/items#index', as: 'items'
     
-    resources :orders, only: [:index, :show]
-    get '/orders/new' => 'public/orders#new', as: 'order_info'
+    # resources :orders, only: [:index, :show]
+    get '/orders/new' => 'public/orders#new', as: 'new_order'
+    post '/orders' => 'public/orders#create', as: 'create_order'
+    get '/orders' => 'public/orders#index', as: 'orders'
+    get '/orders/:id' => 'public/orders#show', as: 'order'
     # resources :registrations, only: [:edit, :new]
     # resources :sessions, only: [:new]
     
