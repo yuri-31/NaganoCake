@@ -14,6 +14,7 @@ class Public::OrdersController < ApplicationController
       @order.delivery_postal_code = @address.postal_code
       @order.delivery_address = @address.address
       @order.delivery_name = @address.name
+# NOT SURE
     elsif params[:order][:select_address] == "2"
       @order.delivery_postal_code = params[:order][:delivery_postal_code]
       @order.delivery_address = params[:order][:delivery_address]
@@ -23,6 +24,22 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.payment_method = params[:order][:payment_method]
+    @order.delivery_postal_code = params[:order][:delivery_postal_code]
+    @order.delivery_address = params[:order][:delivery_address]
+    @order.delivery_name = params[:order][:delivery_name]
+    @order.shipping_fee = 800
+    # @order.order_status
+    
+    @cart_items = CartItem.find_by(customer_id: params[:current_customer.id])
+    # @cart_items = current_customer.cart_items.all
+    
+    @items_total = 0
+    
+    
+    @order_detail = OrderDetail.new
   end
   
   def complete
