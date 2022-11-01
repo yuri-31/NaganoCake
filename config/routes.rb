@@ -53,7 +53,9 @@ Rails.application.routes.draw do
     
     # resources :orders, only: [:index, :show]
     get '/orders/new' => 'public/orders#new', as: 'new_order'
+    post '/orders/confirm' => 'public/orders#confirm', as: 'confirm_order'
     post '/orders' => 'public/orders#create', as: 'create_order'
+    get '/orders/complete' => 'public/orders#complete', as: 'order_complete'
     get '/orders' => 'public/orders#index', as: 'orders'
     get '/orders/:id' => 'public/orders#show', as: 'order'
     # resources :registrations, only: [:edit, :new]
