@@ -46,7 +46,7 @@ class Public::OrdersController < ApplicationController
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item.id
       @order_detail.order_id = @order.id
-      @order_detail.price_on_purchase = cart_item.item.price
+      @order_detail.price_on_purchase = cart_item.item.price*1.1
       @order_detail.amount = cart_item.amount
       @order_detail.production_status = OrderDetail.production_statuses[:not_paid]
       @order_detail.save
@@ -60,9 +60,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.all.order(created_at: :desc)
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
+    @items_total = 0
   end
   
   
