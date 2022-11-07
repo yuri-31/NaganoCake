@@ -12,12 +12,13 @@
     <tbody>
         <% @orders.each do |order| %>
         <tr>
-            <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+            <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
             <td><%= order.customer.full_name %></td>
-            <!--合計注文個数-->
-            <td>30</td>
-            <!--注文ステータス-->
-            <td>入金待ち</td>
+            <%  order.order_details.each do |order_detail| %>
+                <% @total_amount += order_detail.amount %>
+            <% end %>
+            <td><%= @total_amount %></td>
+            <td><%= order.order_status_i18n %></td>
         </tr>
         <% end %>
     </tbody>

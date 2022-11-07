@@ -19,11 +19,13 @@
                 <td><%= image_tag cart_item.item.get_item_image(40, 70) %></td>
                 <td><%= cart_item.item.name %></td>
                 <td><%= cart_item.item.add_tax_price %></td>
-                <%= form_with model: cart_item, url: update_cart_item_path(cart_item.id), method: :patch do |f| %>
-                    <%= f.hidden_field :item_id, :value => cart_item.item_id %>
-                    <td><%= f.select :amount, *[1..10] %></td>
-                    <td><%= f.submit "変更" %></td>
-                <% end %>
+                <td>
+                    <%= form_with model: cart_item, url: update_cart_item_path(cart_item.id), method: :patch do |f| %>
+                        <%= f.hidden_field :item_id, :value => cart_item.item_id %>
+                        <%= f.select :amount, *[1..10] %>
+                        <%= f.submit "変更" %>
+                    <% end %>
+                </td>
                 <td><%= cart_item.get_sub_total_price(cart_item.item.price).to_s(:delimited) %></td>
                 <% @items_total += cart_item.get_sub_total_price(cart_item.item.price) %>
                 <td><%= link_to "削除する", delete_cart_item_path(cart_item.id), method: :delete %></td>

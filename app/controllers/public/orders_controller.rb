@@ -35,20 +35,20 @@ class Public::OrdersController < ApplicationController
     @order.delivery_address = params[:order][:delivery_address]
     @order.delivery_name = params[:order][:delivery_name]
     @order.shipping_fee = 800
-    @order.order_status = Order.order_statuses[:not_paid]
+    @order.order_status = Order.order_statuses[:before_paid]
     @order.save
   
     @cart_items = current_customer.cart_items.all
     
     # @items_total = 0
     
-    current_customer.cart_items. each do |cart_item|
+    current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item.id
       @order_detail.order_id = @order.id
       @order_detail.price_on_purchase = cart_item.item.price*1.1
       @order_detail.amount = cart_item.amount
-      @order_detail.production_status = OrderDetail.production_statuses[:not_paid]
+      @order_detail.production_status = OrderDetail.production_statuses[:before_paid]
       @order_detail.save
     end
     
