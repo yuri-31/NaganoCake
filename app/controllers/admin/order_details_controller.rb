@@ -2,13 +2,21 @@ class Admin::OrderDetailsController < ApplicationController
     
     def update
         order_detail = OrderDetail.find(params[:id])
-        if order_detail.update(order_detail_params)
-        # @order = Order.find(params[:order_detail][:order_id])
-        # @order_details = @order.order_details.all
-        # order_detail = OrderDetail.find(params[:id])
-        # order_detail.update(order_detail_params)
-        redirect_to admin_top_path
+        @order = order_detail.order
+        @order_details = @order.order_details
+        order_detail.update(order_detail_params)
+        
+        if @order_details.exists?(production_status: OrderDetail.production_statuses[:in_production])
+            @order.order_status = Order.order_statuses[:in_production]
+            @order.save
         end
+        
+        if @order_details.count == @order_details.where(production_status: OrderDetail.production_statuses[:production_complete]).count
+            @order.order_status = Order.order_statuses[:before_delivery]
+            @order.save
+        end
+        
+        redirect_to admin_order_path(order_detail.order.id)
     end
     
     private
