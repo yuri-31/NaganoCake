@@ -1,12 +1,12 @@
-<div>
-    <h4>ジャンル検索</h4>
-    <div>
+<div class="border border-dark text-dark">
+    <h6 class="border-bottom border-dark text-center mb-0 p-1">ジャンル検索</h6>
+    <div class="p-3">
         <% genres.each do |genre| %>
-        <p>
+        <a class="d-block mb-1">
             <%= link_to items_path(genre_id: genre.id) do %>
                 <%= genre.name %>
             <% end %>
-        </p>
+        </a><br>
         <% end %>
     </div>
 </div>

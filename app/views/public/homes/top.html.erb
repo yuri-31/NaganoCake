@@ -1,22 +1,40 @@
-<%= render 'admin/genres/genre_search', genres: @genres %>
-
-<div>
-    <p>ようこそ、ながのCAKEへ！<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧はできますが、<br>
-        購入には会員登録が必要になります。
-    </p>
+<div class="container px-sm-0">
+    <div class="row">
+        <div class="col-2">
+            <%= render 'admin/genres/genre_search', genres: @genres %>
+        </div>
+        <div class="col-5 offset-md-1">
+            <div class="border border-dark pt-3 pb-3 mx-auto p-1">
+                <p>ようこそ、ながのCAKEへ！<br>
+                    このサイトは、ケーキ販売のECサイトになります。<br>
+                    会員でない方も商品の閲覧はできますが、<br>
+                    購入には会員登録が必要になります。
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9 offset-md-3">
+            <h2>新着商品</h2>
+            <div class="d-flex">
+            <% @items.first(4).each do |item| %>
+                <div>
+                    <%= link_to item_path(item.id) do %>
+                        <%= image_tag item.get_item_image(100, 180) %><br>
+                        <p><%= item.name %></p>
+                        <p>￥<%= item.add_tax_price %></p>
+                    <% end %>
+                </div>
+            <% end %>
+            </div>
+         <!--LINK NOT WORKING-->
+            <%= link_to '全ての商品を見る>', items_path %>
+        </div>
+    </div>
 </div>
 
 
-<h1>新着商品</h1>
-<div>
-    <% @items.first(4).each do |item| %>
-        <%= image_tag item.get_item_image(100, 180) %><br>
-        <p><%= item.name %></p>
-        <p>￥<%= item.add_tax_price %></p>
-    <% end %>
-</div>
 
-<!--LINK NOT WORKING-->
-<%= link_to '全ての商品を見る>', items_path %>
+
+
+
