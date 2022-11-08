@@ -1,11 +1,23 @@
 class Public::ItemsController < ApplicationController
   
   def index
-    @all_items = Item.all
-    @items = Item.page(params[:page]).reverse_order.per(8)
+    @genres = Genre.all
+
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @items = @genre.items.where(is_active: true).page(params[:page]).reverse_order.per(8)
+    else
+      # redirect_to root_path
+      @items = Item.where(is_active: true).page(params[:page]).reverse_order.per(8)
+    end
+    # if 
+    
+    # @all_items = Item.all
+    # @items = Item.page(params[:page]).reverse_order.per(8)
   end
 
   def show
+    @genres = Genre.all
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
     # @cart_item.item_id = @item.id

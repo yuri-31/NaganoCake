@@ -1,0 +1,12 @@
+<div>
+    <h4>ジャンル検索</h4>
+    <div>
+        <% genres.each do |genre| %>
+        <p>
+            <%= link_to items_path(genre_id: genre.id) do %>
+                <%= genre.name %>
+            <% end %>
+        </p>
+        <% end %>
+    </div>
+</div>

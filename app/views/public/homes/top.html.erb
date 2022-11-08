@@ -1,10 +1,4 @@
-<div>
-    <p>ジャンル検索</p>
-    <% @genres.each do |genre| %>
-        <%= genre.name %><br>
-    <% end %>
-</div>
-
+<%= render 'admin/genres/genre_search', genres: @genres %>
 
 <div>
     <p>ようこそ、ながのCAKEへ！<br>
