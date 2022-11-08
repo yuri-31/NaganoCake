@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
   def new
     @order = Order.new
   end
@@ -21,7 +22,7 @@ class Public::OrdersController < ApplicationController
       @order.delivery_name = params[:order][:delivery_name]
     end
     
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items
     @items_total = 0
     @order.shipping_fee = 800
     # binding.pry
@@ -38,7 +39,7 @@ class Public::OrdersController < ApplicationController
     @order.order_status = Order.order_statuses[:before_paid]
     @order.save
   
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items
     
     # @items_total = 0
     
@@ -60,12 +61,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.all.order(created_at: :desc)
+    @orders = current_customer.orders.order(created_at: :desc)
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details.all
+    @order_details = @order.order_details
     @items_total = 0
   end
   
