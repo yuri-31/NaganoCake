@@ -10,12 +10,8 @@ class Admin::OrdersController < ApplicationController
     @order.update(order_params)
     @order_details = @order.order_details.all
     
-    if @order.order_status == Order.order_statuses[:paid]
-      # @order.order_details.update_all(production_status: OrderDetail.production_statuses[:before_production])
-      @order_details.each do |order_detail|
-        order_detail.production_status = OrderDetail.production_statuses[:before_production]
-        order_detail.save
-      end
+    if @order.order_status == Order.order_statuses.key(1)
+      @order.order_details.update_all(production_status: OrderDetail.production_statuses[:before_production])
     end
     
     redirect_to admin_top_path
