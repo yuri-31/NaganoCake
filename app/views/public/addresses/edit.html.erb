@@ -1,21 +1,26 @@
-<h1>配送先編集</h1>
+<div class="container">
+    <h4 class="d-inline-block bg-light px-3 ml-5 mb-4">配送先編集</h4>
+    <div class="col-11">
+    <%= form_with model: @address, url: update_address_path, method: :patch do |f| %>
+        <table class="table table-borderless table-sm">
+            <tbody>
+                <tr>
+                    <th>郵便番号(ハイフンなし)</th>
+                    <td><%= f.text_field :postal_code, placeholder: "0000000", class: 'rounded' %></td>
+                </tr>
+                <tr>
+                    <th>住所</th>
+                    <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: 'rounded col-12' %></td>
+                </tr>
+                <tr>
+                    <th>宛名</th>
+                    <td><%= f.text_field :name, placeholder: "令和道子", class: 'rounded' %></td>
+                    <td><%= f.submit "変更内容を保存", class: 'btn btn-success text-white' %></td>
+                </tr>
+            </tbody>
+        </table>
+    <% end %>
+    </div>
+</div>
 
-<%= form_with model: @address, url: update_address_path, method: :patch do |f| %>
-    <table>
-        <tbody>
-            <tr>
-                <th>郵便番号(ハイフンなし)</th>
-                <td><%= f.text_field :postal_code, placeholder: "0000000" %></td>
-            </tr>
-            <tr>
-                <th>住所</th>
-                <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
-            </tr>
-            <tr>
-                <th>宛名</th>
-                <td><%= f.text_field :name, placeholder: "令和道子" %></td>
-                <td><%= f.submit "変更内容を保存" %></td>
-            </tr>
-        </tbody>
-    </table>
-<% end %>
+
