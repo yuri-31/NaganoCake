@@ -17,18 +17,18 @@
             <tbody>
                 <% @cart_items.each do |cart_item| %>
                     <tr>
-                        <td><%= image_tag cart_item.item.get_item_image(40, 70), class: 'mr-3' %><%= cart_item.item.name %></td>
-                        <td><%= cart_item.item.add_tax_price %></td>
-                        <td class="text-center">
+                        <td><%= image_tag cart_item.item.get_item_image(60, 40), class: 'mini-img-container mr-3' %><%= cart_item.item.name %></td>
+                        <td class="align-middle"><%= cart_item.item.add_tax_price %></td>
+                        <td class="text-center align-middle">
                             <%= form_with model: cart_item, url: update_cart_item_path(cart_item.id), method: :patch do |f| %>
                                 <%= f.hidden_field :item_id, :value => cart_item.item_id %>
                                 <%= f.select :amount, *[1..10] %>
                                 <%= f.submit "変更", class: 'btn btn-success text-white ml-2' %>
                             <% end %>
                         </td>
-                        <td><%= cart_item.get_sub_total_price(cart_item.item.price).to_s(:delimited) %></td>
+                        <td class="align-middle"><%= cart_item.get_sub_total_price(cart_item.item.price).to_s(:delimited) %></td>
                         <% @items_total += cart_item.get_sub_total_price(cart_item.item.price) %>
-                        <td class="text-center"><%= link_to "削除する", delete_cart_item_path(cart_item.id), method: :delete, class: 'btn btn-danger text-white' %></td>
+                        <td class="text-center align-middle"><%= link_to "削除する", delete_cart_item_path(cart_item.id), method: :delete, class: 'btn btn-danger text-white' %></td>
                     </tr>
                 <% end %>
             </tbody>

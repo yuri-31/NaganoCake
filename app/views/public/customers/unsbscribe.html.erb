@@ -1,5 +1,6 @@
+<%= form_with model: @customer, url: withdraw_path, method: :patch do |f| %>
 <div class="container px-sm-0">
-    <div class="col-6 mx-auto text-center">
+    <div class="col-6 mx-auto text-center mt-5">
         <h4>本当に退会しますか？</h4>
         <p>
             退会すると、会員登録情報や<br>
@@ -9,10 +10,9 @@
         <div class="d-flex justify-content-center">
             <div><%= link_to "退会しない", my_page_path, class: 'btn btn-primary text-white' %></div>
             <div>
-                <%= form_with model: @customer, url: withdraw_path, method: :patch do |f| %>
                 <%= f.submit "退会する", class: 'btn btn-danger text-white ml-4' %>
-                <% end %>
             </div>
         </div>
     </div>
 </div>
+<% end %>

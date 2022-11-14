@@ -1,29 +1,45 @@
-<h1>商品新規登録</h1>
-
 <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-    <label>商品画像</label>
-    <%= f.file_field :item_image, placeholder: "ファイルを選択" %><br>
-    
-    <label>商品名</label>
-    <%= f.text_field :name, placeholder: "商品名" %><br>
-    
-    <label>商品説明</label>
-    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %><br>
-    
-    <label>ジャンル</label>
-    <%= f.collection_select :genre_id, Genre.all.order(created_at: :desc), :id, :name, include_blank: "選択してください" %><br>
-    
-    <label>税抜価格</label>
-    <%= f.text_field :price, placeholder: "1000" %> 円<br>
-    
-    <!--NOT SURE-->
-    <label>販売ステータス</label>
-    <%= f.radio_button :is_active, true %>
-    <%= f.label :is_active, "販売中" %>
-    <%= f.radio_button :is_active, false %>
-    <%= f.label :is_active, "販売停止中" %><br>
-     
-    <%= f.submit "新規登録" %>
-    
+<div class="container">
+    <h4 class="d-inline-block bg-light px-3 ml-5 mb-4">商品新規登録</h4>
+    <div class="col-8 mx-auto">
+        <table class="table table-borderless table-sm">
+            <tbody>
+                <tr>
+                    <th><label>商品画像</label></th>
+                    <td><%= f.file_field :item_image, placeholder: "ファイルを選択", class: 'rounded' %></td>
+                </tr>
+                <tr>
+                    <th><label>商品名</label></th>
+                    <td><%= f.text_field :name, placeholder: "商品名", class: 'col-7' %></td>
+                </tr>
+                <tr>
+                    <th><label>商品説明</label></th>
+                    <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します", class: 'col-7' %></td>
+                </tr>
+                <tr>
+                    <th><label>ジャンル</label></th>
+                    <td><%= f.collection_select :genre_id, Genre.all.order(created_at: :desc), :id, :name, include_blank: "選択してください", class: 'col-7' %></td>
+                </tr>
+                <tr>
+                    <th><label>税抜価格</label></th>
+                    <td><%= f.text_field :price, placeholder: "1000", class: 'col-7' %> 円</td>
+                </tr>
+                <tr>
+                    <th><label>販売ステータス</label></th>
+                    <td>
+                        <%= f.radio_button :is_active, true %>
+                        <%= f.label :is_active, "販売中" %>
+                        <%= f.radio_button :is_active, false %>
+                        <%= f.label :is_active, "販売停止中" %>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="1"></th>
+                    <td><%= f.submit "新規登録", class: 'btn btn-success text-white col-3 ml-5' %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <% end %>
     

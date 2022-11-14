@@ -1,6 +1,10 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
   def index
+    @cart_item = CartItem.find_by(customer_id: current_customer.id)
+    if !@cart_item
+       redirect_to items_path
+    end
     @cart_items = current_customer.cart_items
     @items_total = 0
     # @items = Item.find(@cart_items[:item_id])

@@ -1,6 +1,8 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   def new
+    # @cart_item = CartItem.find_by(customer_id: current_customer.id)
+    # return if !@cart_item
     @order = Order.new
   end
   

@@ -20,7 +20,9 @@
             <% @items.first(4).each do |item| %>
                 <div class="col-3">
                     <%= link_to item_path(item.id) do %>
-                        <%= image_tag item.get_item_image(100, 200) %><br>
+                        <div class="img-container text-center">
+                            <%= image_tag item.get_item_image(156, 120) %>
+                        </div>
                         <p><%= item.name %></p>
                         <p>￥<%= item.add_tax_price %></p>
                     <% end %>

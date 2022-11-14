@@ -1,9 +1,17 @@
+<% if @order.errors.any? %>
+    <%= @order.errors.count %> 件のエラーが発生しました
+    <ul>
+        <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_with model: @order, url: confirm_order_path, method: :post do |f| %>
 <div class="container px-sm-0">
     <div class="col-10 mx-auto">
         <h4 class="ml-5 d-inline-block bg-light mb-4">注文情報入力</h4>
         <h4>支払方法</h4>
         <div class="col-11 mb-2">
-        <%= form_with model: @order, url: confirm_order_path, method: :post do |f| %>
             <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
             <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
             <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
@@ -43,10 +51,10 @@
                 </table>
             </div>
             <div class="col-3 mx-auto">
-                <%= f.submit "確認画面へ進む", class: 'btn btn-primary text-white' %>
+                <%= f.submit "確認画面へ進む", class: 'btn btn-primary text-white font-weight-bold' %>
             </div>
-        <% end %>
         </div>
     </div>
 </div>
+<% end %>
 

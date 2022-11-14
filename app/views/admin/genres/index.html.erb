@@ -1,24 +1,28 @@
-<h1>ジャンル一覧・追加</h1>
-
 <%= form_with model: @genre, url: admin_genres_path, method: :post do |genre| %>
-    <label>ジャンル名</label>
-    <%= genre.text_field :name, :placeholder => "ジャンル名" %>
-    <%= genre.submit '新規登録' %>
+<div class="container">
+    <div class="col-7">
+        <h3 class="d-inline-block bg-light px-3 ml-5 mb-5">ジャンル一覧・追加</h3><br>
+        <div class="mb-5">
+            <label class="mr-5">ジャンル名</label>
+            <%= genre.text_field :name, :placeholder => "ジャンル名", class: 'mr-5' %>
+            <%= genre.submit '新規登録', class: 'btn btn-success text-white font-weight-bold px-4' %>
+        </div>
+        <table class="col-7 table table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>ジャンル</th>
+                    <th colspan="1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @genres.each do |genre| %>
+                    <tr>
+                        <td class="pl-3"><%= genre.name %></td>
+                        <td class="text-right"><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-success text-white mr-4' %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
 <% end %>
-
-<table>
-    <thead>
-        <tr>
-            <th>ジャンル</th>
-            <th colspan="1"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @genres.each do |genre| %>
-            <tr>
-                <td><%= genre.name %></td>
-                <td><%= link_to '編集する', edit_admin_genre_path(genre.id) %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>

@@ -6,9 +6,11 @@ class Public::ItemsController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @items = @genre.items.where(is_active: true).page(params[:page]).reverse_order.per(8)
+      @all_items = @genre.items.where(is_active: true)
     else
       # redirect_to root_path
       @items = Item.where(is_active: true).page(params[:page]).reverse_order.per(8)
+      @all_items = Item.where(is_active: true)
     end
     # if 
     

@@ -12,7 +12,7 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="bg-white shadow-sm border border-dark">
+    <header style="height: 120px;" class="bg-white shadow-sm border border-dark">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a><span>LOGO</span></a>
@@ -45,7 +45,7 @@
               </li>
               <li class="nav-item">
                 <div class="nav-link">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'text-dark btn btn-outline-dark' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, class: 'text-dark btn btn-outline-dark' %>
                 </div>
               </li>
             </ul>
@@ -68,7 +68,7 @@
               </li>
               <li class="nav-item">
                 <div class="nav-link">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-dark btn btn-outline-dark' %>
+                <%= link_to "ログアウト", destroy_customer_session_path, class: 'text-dark btn btn-outline-dark' %>
                 </div>
               </li>
             </ul>
@@ -100,11 +100,10 @@
         </div>
       </nav>
     </header>
-    <main class="border-right border-left border-dark p-5">
+    <main class="border-right border-left border-dark p-4">
     <%= yield %>
     </main>
-    <footer class="text-center bg-white border border-dark max-vw-100">
-      <p>footer</p>
+    <footer style="height: 100px;" class="text-center bg-white border border-dark max-vw-100">
     </footer>
   </body>
 </html>
