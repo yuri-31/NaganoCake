@@ -20,11 +20,11 @@
             <% @items.first(4).each do |item| %>
                 <div class="col-3">
                     <%= link_to item_path(item.id) do %>
-                        <div class="img-container text-center">
+                        <div class="img-container text-center mb-2">
                             <%= image_tag item.get_item_image(156, 120) %>
                         </div>
-                        <p><%= item.name %></p>
-                        <p>￥<%= item.add_tax_price %></p>
+                        <p class="links text-decoration-none mb-1"><%= item.name %></p>
+                        <p class="links text-decoration-none">￥<%= item.add_tax_price %></p>
                     <% end %>
                 </div>
             <% end %>
