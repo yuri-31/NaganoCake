@@ -15,7 +15,7 @@ class Admin::OrdersController < ApplicationController
       @order.order_details.update_all(production_status: OrderDetail.production_statuses[:before_production])
     end
     
-    redirect_to admin_top_path
+    redirect_to admin_order_path(params[:id])
   end
   
   private

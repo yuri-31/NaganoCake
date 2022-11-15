@@ -41,8 +41,10 @@
                 </tr>
             </tbody>
         </table>
-        <%= link_to "買い物を続ける", items_path, class: 'btn btn-primary text-white' %>
-        <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success btn-block col-md-4 offset-md-4 text-white mt-5' %>
+        <%= link_to "買い物を続ける", root_path, class: 'btn btn-primary text-white' %>
+        <% if @cart_item %>
+            <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success btn-block col-md-4 offset-md-4 text-white mt-5' %>
+        <% end %>
     </div>
 </div>
 

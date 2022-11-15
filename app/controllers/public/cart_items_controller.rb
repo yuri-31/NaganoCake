@@ -2,9 +2,9 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
   def index
     @cart_item = CartItem.find_by(customer_id: current_customer.id)
-    if !@cart_item
-       redirect_to items_path
-    end
+    # if !@cart_item
+    #   redirect_to items_path
+    # end
     @cart_items = current_customer.cart_items
     @items_total = 0
     # @items = Item.find(@cart_items[:item_id])
@@ -28,7 +28,7 @@ class Public::CartItemsController < ApplicationController
   def update
     cart_item = CartItem.find(params[:id])
     cart_item.update(cart_item_params)
-    redirect_to items_path
+    redirect_to cart_items_path
   end
   
   def destroy
@@ -40,7 +40,7 @@ class Public::CartItemsController < ApplicationController
   def destroy_all
     cart_items = CartItem.all
     cart_items.destroy_all
-    redirect_to items_path
+    redirect_to cart_items_path
   end
   
   private

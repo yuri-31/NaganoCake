@@ -18,6 +18,6 @@ class Order < ApplicationRecord
     
     
     def get_items_total
-        (total_price-shipping_fee).round.to_s(:delimited)
+        (total_price - shipping_fee).round.to_s(:delimited)
     end
 end
